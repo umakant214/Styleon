@@ -12,9 +12,8 @@ const FetchItems = () => {
 
     const controller = new AbortController();
     const signal = controller.signal;
-
     dispatch(fetchStatusActions.markFetchingStarted());
-    fetch("http://localhost:8080/items", { signal })
+    fetch(`${import.meta.env.VITE_API_URL}/items`, { signal })
       .then((res) => res.json())
       .then(({ items }) => {
         dispatch(fetchStatusActions.markFetchDone());
